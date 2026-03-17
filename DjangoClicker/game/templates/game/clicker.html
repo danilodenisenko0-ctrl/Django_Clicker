@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clicker</title>
+</head>
+<body>
+
+    <h1>Очки: <span id="score">{{ score }}</span></h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Клік!</button>
+    </form>
+
+    <h2>Апгрейди</h2>
+
+    {% for upgrade in upgrades %}
+    <form method="post" action="/buy/{{ upgrade.id }}/">
+        {% csrf_token %}
+        <button type="submit">
+            Buy {{ upgrade.name }} ({{ upgrade.price }})
+        </button>
+    </form>
+    {% endfor %}
+
+</body>
+</html>
